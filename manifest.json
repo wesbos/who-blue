@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Who Blue?",
+  "version": "1.0",
+  "description": "A chrome extension to separate the Lords and Peasants",
+  "icons": {
+    "16": "images/who-blue-16.png",
+    "32": "images/who-blue-32.png",
+    "48": "images/who-blue-48.png",
+    "128": "images/who-blue-128.png"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/content.js"
+      ],
+      "matches": [
+        "https://twitter.com/*"
+      ]
+    }
+  ]
+}
