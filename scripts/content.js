@@ -13,8 +13,7 @@ async function isBlue() {
 
   checkmark.click();
 
-  if (blueText) return true;
-  return false;
+  return !!blueText;
 }
 
 function markAsBlue() {
