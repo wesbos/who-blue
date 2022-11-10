@@ -26,6 +26,10 @@ function markAsBlue() {
     check.style.rotate = `0.5turn`;
     check.style.fill = `#ee8383`;
   });
+
+  const poop = document.createElement('span')
+  poop.innerText = '💩'
+  check.replaceWith(poop)
 }
 
 async function go() {
