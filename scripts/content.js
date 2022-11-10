@@ -1,7 +1,7 @@
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 async function isBlue() {
-  const checkmark = document.querySelector(`[aria-label*="verified accounts"]`);
+  const checkmark = document.querySelector(`[aria-label*="Proporciona detalles sobre las cuentas verificadas"]`);
 
   if (!checkmark) return false;
 
@@ -9,7 +9,7 @@ async function isBlue() {
   checkmark.click();
   // wait for a bit
   await wait(50);
-  const blueText = Array.from(document.querySelectorAll('span')).find(span => span.innerText.includes('subscribed to Twitter Blue'));
+  const blueText = Array.from(document.querySelectorAll('span')).find(span => span.innerText.includes('suscrita a Twitter Blue'));
 
   checkmark.click();
 
@@ -18,35 +18,35 @@ async function isBlue() {
 }
 
 function markAsBlue() {
-  const check = document.querySelector(`[aria-label*="verified accounts"] svg`);
-  const otherCheck = document.querySelector(`svg[aria-label="Verified account"]`)
+  const originCheck = document.querySelectorAll(`svg[aria-label="Cuenta verificada"]`);
+  const check = originCheck[0];
+  const otherCheck = originCheck[1];
 
   if (!check) return;
-  [check, otherCheck].filter(check => check.style).forEach(check => {
-    check.style.rotate = `0.5turn`;
-    check.style.fill = `#ee8383`;
-  });
+
+  check.style.rotate = `0.5turn`;
+  check.style.fill = `#ee8383`;
+  otherCheck.style.rotate = `0.5turn`;
+  otherCheck.style.fill = `#ee8383`;
 }
 
 async function go() {
   await waitForTimeline();
-  console.log('checking if blue')
-  await wait(500);
+  console.log('Revisando si es verificado');
+  await wait(1000);
   const isBlueCheck = await isBlue();
   if (isBlueCheck) {
-    console.log('IS BLUE')
+    console.log('SI, ERES DE LOS 8$');
     markAsBlue();
   }
 }
 
 async function waitForTimeline() {
   return new Promise((resolve, reject) => {
-    const interval = setInterval(function() {
-      console.log('checking for timeline...');
-      const timeline = document.querySelector(`[aria-label="Home timeline"]`);
-
-      if(timeline){
-        console.log('IT WORKED')
+    const interval = setInterval(function () {
+      console.log('REVISANDO SU CRONOLOGIA ...');
+      const timeline = document.querySelector(`[aria-label="Cronología de inicio"]`);
+      if (timeline) {
         clearInterval(interval);
         resolve();
       }
