@@ -1,3 +1,6 @@
+addEventListener('popstate', go);
+addEventListener('click', go);
+
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 async function isBlue() {
@@ -28,6 +31,17 @@ function markAsBlue() {
   });
 }
 
+function markVerified() {
+  const check = document.querySelector(`[aria-label*="verified accounts"] svg`);
+  const otherCheck = document.querySelector(`svg[aria-label="Verified account"]`)
+
+  if (!check) return;
+  [check, otherCheck].filter(check => check.style).forEach(check => {
+    check.style.rotate = `0.0turn`;
+    check.style.fill = `#d6d9db`;
+  });
+}
+
 async function go() {
   await waitForTimeline();
   console.log('checking if blue')
@@ -35,8 +49,10 @@ async function go() {
   const isBlueCheck = await isBlue();
   if (isBlueCheck) {
     console.log('IS BLUE')
-    markAsBlue();
+    return markAsBlue();
   }
+  console.log('IS VERIFIED')
+  return markVerified();
 }
 
 async function waitForTimeline() {
