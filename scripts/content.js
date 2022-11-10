@@ -1,4 +1,5 @@
 addEventListener('popstate', go);
+addEventListener('click', go);
 
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
