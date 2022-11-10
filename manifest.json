@@ -14,8 +14,19 @@
       "js": [
         "scripts/content.js"
       ],
+      "exclude_globs": [
+        "*://twitter.com/home"
+      ],
       "matches": [
         "https://twitter.com/*"
+      ]
+    },
+    {
+      "js": [
+        "scripts/home.js"
+      ],
+      "matches": [
+        "https://twitter.com/home"
       ]
     }
   ]
